@@ -14,8 +14,10 @@ import java.util.ArrayList;
  */
 public class Database {
     
+    //an array acting as a fictional database containing dummy inspections 
     public ArrayList<Inspection> inspectionsInDb = new ArrayList<>();
     
+    //constructor initiating the "database"
     public Database(){
      Inspection insp1 = new Inspection("abc123", 10);
      Inspection insp2 = new Inspection("abc123", 20);

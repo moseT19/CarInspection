@@ -13,12 +13,13 @@ public class InspectionResult {
     
     private String inspecId, inspecResult;
     
-    
+    //constructor
     public InspectionResult(String inspecid, String inspecResult){
             this.inspecId = inspecid;
             this.inspecResult = inspecResult;
     }
-
+    
+    //get
     public String getInspecId() {
         return inspecId;
     }
@@ -26,7 +27,8 @@ public class InspectionResult {
     public String getInspecResult() {
         return inspecResult;
     }
-
+    
+    //set
     public void setInspecId(String inspecId) {
         this.inspecId = inspecId;
     }
@@ -35,6 +37,7 @@ public class InspectionResult {
         this.inspecResult = inspecResult;
     }
 
+    //toString method
     @Override
     public String toString() {
         return "InspectionResult: Id: "+inspecId+" Result: "+ inspecResult;

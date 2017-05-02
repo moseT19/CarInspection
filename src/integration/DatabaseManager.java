@@ -15,10 +15,13 @@ import java.util.ArrayList;
  */
 public class DatabaseManager {
     
+    //constructor
     public DatabaseManager(){
         
     }
     
+    //returns an array containing all inspections regarding input reg number
+    //inspections are located in the "database"
     public ArrayList<Inspection> findInspectionsByRegNr(String reg){
         
         ArrayList<Inspection> foundInspections = new ArrayList<>();
@@ -38,6 +41,7 @@ public class DatabaseManager {
         return foundInspections;
     }
     
+    //stores the result regarding the input inspection using a set method
     public void storeResult(Inspection inspection, String result){
         inspection.getResult().setInspecResult(result);
                 

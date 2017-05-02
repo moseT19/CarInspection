@@ -20,6 +20,7 @@ import model.InspectionChecklist;
  *
  * @author jocke
  */
+//class controller
 public class Controller {
     
     private Display display;
@@ -29,6 +30,7 @@ public class Controller {
     private PaymentAuthorization auth;
     public ArrayList<Inspection> inspections = new ArrayList<>();
     
+    //constructor for the controler to initiate neccesary objects
     public Controller(){
         this.display = new Display(); 
         this.garageDoor = new GarageDoor(); 
@@ -37,10 +39,12 @@ public class Controller {
         this.printer = new Printer();
     }
     
+    //operates door, true = open, false = closed
     public void operateDoor(boolean status){
         garageDoor.operateDoor(status);
     }
     
+    //this method initiates next inspection by incrementing displaynumber and opening garage door
     public void callNextInspection(){
         display.incrementNumber();
         System.out.println(display.toString());
@@ -48,12 +52,14 @@ public class Controller {
         
     }
     
+    //this method return the calculated cost for perfoming the inspection
     public double enterRegNumber(String regnr){
         inspections = dbManager.findInspectionsByRegNr(regnr);
       
         return Inspection.calculateCost(inspections);
     }
     
+    //Returns a InspectionChecklist containg information regarding the inspections to be done on this registration number
     public InspectionChecklist nextInspection(int i){
         System.out.println(inspections.get(i).getChecklist().toString());
         if((i+1) == inspections.size())
@@ -61,13 +67,14 @@ public class Controller {
         return inspections.get(i).getChecklist();
     }
     
+    //calls the method store result in the databasemanager
     public void storeResult(int i, String result){
         
         dbManager.storeResult(inspections.get(i), result);
     }
     
     
-    
+    //initiates the payment procedure and send the payment authorization request and print request
     public void payment(double price){
         CreditCard customerCreditCard = new CreditCard(1234, "1234 5678 9012 3456", "Johnie doe", "05/21", 007);
         if(auth.authorizePayment(customerCreditCard, price)){

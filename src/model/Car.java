@@ -11,12 +11,14 @@ package model;
  */
 public class Car {
         
-        private String regNumber;
+        private final String regNumber;
         
+        //constructor
         public Car(String regnr){
             this.regNumber = regnr;
         }
-
+        
+        //get method
     public String getRegNumber() {
         return regNumber;
     }

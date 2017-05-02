@@ -14,6 +14,7 @@ public class CreditCard {
     private final int pin, cvc;
     private final String number, holder, date;
     
+    //constructor
     public CreditCard(int pin, String number, String holder, String date, int cvc){
         this.pin = pin;
         this.number = number;
@@ -21,7 +22,8 @@ public class CreditCard {
         this.date = date;
         this.cvc = cvc;
     }
-
+    
+    //get methods
     public int getPin() {
         return pin;
     }

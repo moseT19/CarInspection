@@ -13,15 +13,17 @@ public class Display {
     
     private int displayNumber; 
     
+    //constructor
     public Display(){
         this.displayNumber = 1;
     }
 
+    //increments display number 
     public void incrementNumber() {
         displayNumber++;
     }
 
-
+    //tostring for the display
     @Override
     public String toString() {
         return "Now serving: " + displayNumber;

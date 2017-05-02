@@ -16,6 +16,7 @@ import controller.Controller;
  */
 public class View {
     
+    //constructor for view class
     public View(Controller contr){
         
         contr.callNextInspection();

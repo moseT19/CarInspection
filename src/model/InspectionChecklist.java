@@ -14,12 +14,12 @@ public class InspectionChecklist {
     private String inspectionId;
     private String inspectionSteps;
     
-    
+    //constructor
     public InspectionChecklist(String inspid, String inspsteps){
         this.inspectionId = inspid;
         this.inspectionSteps = inspsteps;
     }
-
+    //get
     public String getInspectionId() {
         return inspectionId;
     }
@@ -27,7 +27,8 @@ public class InspectionChecklist {
     public String getInspectionSteps() {
         return inspectionSteps;
     }
-
+    
+    //set
     public void setInspectionId(String inspectionId) {
         this.inspectionId = inspectionId;
     }
@@ -35,7 +36,8 @@ public class InspectionChecklist {
     public void setInspectionSteps(String inspectionSteps) {
         this.inspectionSteps = inspectionSteps;
     }
-
+    
+    //toString
     @Override
     public String toString() {
         return "InspectionChecklist{" + "inspectionId=" + inspectionId + ", inspectionSteps=" + inspectionSteps + '}';

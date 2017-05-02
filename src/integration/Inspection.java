@@ -15,13 +15,15 @@ import model.InspectionResult;
  *
  * @author jocke
  */
+
 public class Inspection {
     
         private Car car;
-        public InspectionChecklist checklist;
+        private InspectionChecklist checklist;
         private InspectionResult result;
         private double price;
-    
+        
+        //constructor creating a car, inspectionchecklist, inspectionsresult object and adding a price. 
         public Inspection(String regnr, double price){
             this.car = new Car(regnr);
             this.checklist = new InspectionChecklist(null, null);
@@ -29,6 +31,7 @@ public class Inspection {
             this.price = price;
         }
 
+        //getters
     public Car getCar() {
         return car;
     }
@@ -45,6 +48,7 @@ public class Inspection {
         return price;
     }
 
+    //returns the cost peforming the inspectiones in the retrieved array
    public static double calculateCost(ArrayList<Inspection> inspections) {
         double cost = 0;
         for(Inspection inspection: inspections)

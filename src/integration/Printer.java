@@ -13,14 +13,17 @@ import java.util.ArrayList;
  */
 public class Printer {
     
+    //constructor
     public Printer(){
         
     }
     
+    //prints the purchase reciept with the input price
     public void printReceipt(double price){
         System.out.println("Receipt: " + price);
     }
     
+    //prints the result for every inspection performed in the input array
     public void printResult(ArrayList<Inspection> inspections){
         for(int i = 0; i < inspections.size(); i++){
             System.out.println(inspections.get(i).getResult().toString());

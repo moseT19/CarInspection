@@ -14,11 +14,12 @@ import model.CreditCard;
 public class PaymentAuthorization {
     
     
-    
+    //constructor
     public PaymentAuthorization(){
         
     }
     
+    //returns (in this case true) a boolean with the answer from the "bank" if the purchase was granted or not
     public boolean authorizePayment(CreditCard card, double price){
         return true;
     }
