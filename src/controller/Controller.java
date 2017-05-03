@@ -47,35 +47,39 @@ public class Controller {
     //this method initiates next inspection by incrementing displaynumber and opening garage door
     public void callNextInspection(){
         display.incrementNumber();
+        System.out.println("\n**Instructor calls for next inspection. Program updates display and open the garagedoor. ");
         System.out.println(display.toString());
         garageDoor.operateDoor(true);
+        System.out.println("\n**When the customer has entered the program closes  the garagedoor upon instruction from instructor. ");
+        
         
     }
     
     //this method return the calculated cost for perfoming the inspection
     public double enterRegNumber(String regnr){
         inspections = dbManager.findInspectionsByRegNr(regnr);
-      
+        System.out.println("\n**Instructor enters the car registration number and the program locates inspections to be performed in the database. \n The program then returns the total cost of this inspection. ");
         return Inspection.calculateCost(inspections);
     }
     
     //Returns a InspectionChecklist containg information regarding the inspections to be done on this registration number
     public InspectionChecklist nextInspection(int i){
-        System.out.println(inspections.get(i).getChecklist().toString());
-        if((i+1) == inspections.size())
-            printer.printResult(inspections);
+            
         return inspections.get(i).getChecklist();
     }
     
     //calls the method store result in the databasemanager
     public void storeResult(int i, String result){
-        
-        dbManager.storeResult(inspections.get(i), result);
+        System.out.print("**Program stores the result in database through the database manager. \n");
+        //dbManager.storeResult(inspections.get(i), result);
+        dbManager.storeResult(i, result);
     }
     
     
     //initiates the payment procedure and send the payment authorization request and print request
     public void payment(double price){
+        System.out.println("\n**The program tells the customer what price to pay and customer enters creditcard information. ");
+        System.out.println("Amount to pay: "+ price);
         CreditCard customerCreditCard = new CreditCard(1234, "1234 5678 9012 3456", "Johnie doe", "05/21", 007);
         if(auth.authorizePayment(customerCreditCard, price)){
             printer.printReceipt(price);

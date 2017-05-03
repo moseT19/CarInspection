@@ -20,13 +20,17 @@ public class View {
     public View(Controller contr){
         
         contr.callNextInspection();
-        double price = contr.enterRegNumber("NWO 611");
+        contr.operateDoor(false);
+        double price = contr.enterRegNumber("abc123");
         contr.payment(price);
         
         for(int i = 0; i < contr.inspections.size(); i++){
-            contr.nextInspection(i);
-            contr.storeResult(i, "Result input");
+            System.out.println("\n"+contr.nextInspection(i).toString());
+            //the storeresult method sends the index in the "database" of the inspection perfomed in order to set the result on the correct inspection. 
+            contr.storeResult(contr.dbManager.db.inspectionsInDb.indexOf(contr.inspections.get(i)), "Result input"+contr.dbManager.db.inspectionsInDb.indexOf(contr.inspections.get(i)));
+            
         }
+        contr.printer.printResult(contr.inspections);
         
         contr.operateDoor(true);
         contr.operateDoor(false);

@@ -20,13 +20,15 @@ public class Printer {
     
     //prints the purchase reciept with the input price
     public void printReceipt(double price){
+        System.out.println("**Customer recieves a receipt of the payment. ");
         System.out.println("Receipt: " + price);
     }
     
     //prints the result for every inspection performed in the input array
     public void printResult(ArrayList<Inspection> inspections){
-        for(int i = 0; i < inspections.size(); i++){
-            System.out.println(inspections.get(i).getResult().toString());
+        System.out.println("\n**The program sends a printout of the results to the printer. ");
+        for (Inspection inspection : inspections) {
+            System.out.println(inspection.getResult().toString());
         }
     }
     

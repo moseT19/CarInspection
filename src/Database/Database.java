@@ -28,12 +28,12 @@ public class Database {
      Inspection insp7 = new Inspection("abc222", 30);
      Inspection insp8 = new Inspection("abc222", 50);
      inspectionsInDb.add(insp1);
-     inspectionsInDb.add(insp2);
-     inspectionsInDb.add(insp3);
-     inspectionsInDb.add(insp4);
-     inspectionsInDb.add(insp5);
      inspectionsInDb.add(insp6);
-     inspectionsInDb.add(insp7);
+     inspectionsInDb.add(insp5);
+     inspectionsInDb.add(insp4);
+     inspectionsInDb.add(insp3);
+     inspectionsInDb.add(insp6);
+     inspectionsInDb.add(insp2);
      inspectionsInDb.add(insp8);
      
     }

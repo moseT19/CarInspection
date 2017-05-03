@@ -40,7 +40,7 @@ public class InspectionChecklist {
     //toString
     @Override
     public String toString() {
-        return "InspectionChecklist{" + "inspectionId=" + inspectionId + ", inspectionSteps=" + inspectionSteps + '}';
+        return "InspectionChecklist: \n" + "inspectionId: " + inspectionId + ", inspectionSteps: " + inspectionSteps + "";
     }
     
     
