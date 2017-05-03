@@ -23,11 +23,14 @@ import model.InspectionChecklist;
 //class controller
 public class Controller {
     
-    private Display display;
-    private GarageDoor garageDoor;
+    private final Display display;
+    private final GarageDoor garageDoor;
+    //the global vairable for the database manager is public because its needed outside of this class
     public DatabaseManager dbManager;
+    //the printer is global because it's used in other classes
     public Printer printer;
-    private PaymentAuthorization auth;
+    private final PaymentAuthorization auth;
+    //the arraylist containing the inspections to the specific reg number
     public ArrayList<Inspection> inspections = new ArrayList<>();
     
     //constructor for the controler to initiate neccesary objects
@@ -50,7 +53,7 @@ public class Controller {
         System.out.println("\n**Instructor calls for next inspection. Program updates display and open the garagedoor. ");
         System.out.println(display.toString());
         garageDoor.operateDoor(true);
-        System.out.println("\n**When the customer has entered the program closes  the garagedoor upon instruction from instructor. ");
+        System.out.println("\n**When the customer has entered, the program closes  the garagedoor upon instruction from instructor. ");
         
         
     }
@@ -71,7 +74,7 @@ public class Controller {
     //calls the method store result in the databasemanager
     public void storeResult(int i, String result){
         System.out.print("**Program stores the result in database through the database manager. \n");
-        //dbManager.storeResult(inspections.get(i), result);
+        
         dbManager.storeResult(i, result);
     }
     

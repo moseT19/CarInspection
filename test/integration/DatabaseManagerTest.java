@@ -30,19 +30,33 @@ public class DatabaseManagerTest {
     
     @After
     public void tearDown() {
+        db = null;
+        testdbM = null;
     }
 
-    /**
-     * Test of findInspectionsByRegNr method, of class DatabaseManager.
-     */
+   
     @Test
     public void testFindInspectionsByRegNr() {
         
         int expectedHits = 4;
         int actualHits = testdbM.findInspectionsByRegNr("abc123").size();
-        
-        
         assertEquals("Number of hits in database", expectedHits, actualHits);
+        
+    }
+    
+    @Test
+    public void testStoreResult(){
+        
+        Inspection expRes = new Inspection("abc123", 40);
+        expRes.getResult().setInspecResult("dummy test comment");
+        
+       
+        testdbM.storeResult(0, "dummy test comment");
+        
+        String expResS = expRes.getResult().getInspecResult();
+        String resS = db.inspectionsInDb.get(0).getResult().getInspecResult();
+        System.out.println(resS+ ", " + expResS);
+        assertEquals("message", expResS, resS);
         
     }
 

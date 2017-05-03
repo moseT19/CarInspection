@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public class DatabaseManager {
     
+    //the database containg all inspections is created 
     public Database db = new Database();
     //constructor
     public DatabaseManager(){
@@ -22,7 +23,8 @@ public class DatabaseManager {
     }
     
     //returns an array containing all inspections regarding input reg number
-    //inspections are located in the "database"
+    //inspections are located in the "database" and gathered with a loop going through all object and compering the cars reg number with the inputed reg number
+    //when these inspections are found the checklist object is modified with the purpose of making the printout easier to udnerstand. 
     public ArrayList<Inspection> findInspectionsByRegNr(String reg){
         
         ArrayList<Inspection> foundInspections = new ArrayList<>();
@@ -30,9 +32,9 @@ public class DatabaseManager {
         int i;
        
         for(i = 0; i < db.inspectionsInDb.size(); i++){
-            //locates all inspections tied to registration number from argument
+            
             if(db.inspectionsInDb.get(i).getCar().getRegNumber().equals(reg)){
-                //gives inspections dummy id and instruction, the 'i' is added to show in the output that the correct inspection is gathered 
+                
                 db.inspectionsInDb.get(i).getChecklist().setInspectionId("dummyId "+i);
                 db.inspectionsInDb.get(i).getResult().setInspecId("dummyId"+i);
                 db.inspectionsInDb.get(i).getChecklist().setInspectionSteps("dummy steps "+i);
