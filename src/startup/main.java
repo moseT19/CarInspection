@@ -7,21 +7,30 @@ package startup;
 
 
 
+import Utility.LogHandler;
 import View.View;
 import controller.Controller;
 
+import model.NoDatabaseException;
+
+
+
 /**
- *
+ *  The main class initiating View, Controller, Loghandler along with the sample execution. 
  * @author jocke
  */
 public class main {
     
-        public static void main(String[] args) {
+        public static void main(String[] args) throws Exception {
         
-            
-            Controller contr = new Controller();
-            View view = new View(contr);
-            
+            try{
+                Controller contr = new Controller();
+                View view = new View(contr);
+                LogHandler loghandler = new LogHandler();
+                view.sampleExec(contr, loghandler);
+            }catch(NoDatabaseException e){
+                System.out.println("Can not log" + e.getMessage());
+            }
             
     }
 }

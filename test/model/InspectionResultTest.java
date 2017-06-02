@@ -22,7 +22,7 @@ public class InspectionResultTest {
     
     @Before
     public void setUp() {
-        res = new InspectionResult(null, null);
+        res = new InspectionResult(null, false);
         System.setOut(new PrintStream(outContent));
     }
     
@@ -53,7 +53,7 @@ public class InspectionResultTest {
     @Test
     public void testSetInspecResult() {
         
-        String inspecResult = "no problemo";
+        boolean inspecResult = true;
         
         res.setInspecResult(inspecResult);
         assertEquals("message", inspecResult, res.getInspecResult());
@@ -67,7 +67,7 @@ public class InspectionResultTest {
     public void testToString() {
         
         res.setInspecId("tostring");
-        res.setInspecResult("test tostring");
+        res.setInspecResult(true);
         System.out.print(res.toString());
         assertEquals("InspectionResult: Id: tostring Result: test tostring", outContent.toString());
         

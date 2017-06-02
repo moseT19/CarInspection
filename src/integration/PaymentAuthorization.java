@@ -21,7 +21,6 @@ public class PaymentAuthorization {
     
     //returns (in this case true) a boolean with the answer from the "bank" if the purchase was granted or not
     public boolean authorizePayment(CreditCard card, double price){
-        System.out.println("\n**The payment is sent to a external payment authorization program which either accepts the payment or denies (in this case always accepted). ");
         return true;
     }
     

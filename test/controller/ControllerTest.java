@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import model.InspectionChecklist;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -34,7 +35,7 @@ public class ControllerTest {
      * Test of callNextInspection method, of class Controller.
      */
     @Test
-    public void testCallNextInspection() {
+    public void testCallNextInspection() throws IOException {
         System.out.println("callNextInspection");
         Controller instance = new Controller();
         instance.callNextInspection();
@@ -46,7 +47,7 @@ public class ControllerTest {
      * Test of enterRegNumber method, of class Controller.
      */
     @Test
-    public void testEnterRegNumber() {
+    public void testEnterRegNumber() throws IOException, Exception {
         System.out.println("enterRegNumber");
         String regnr = "";
         Controller instance = new Controller();
@@ -61,7 +62,7 @@ public class ControllerTest {
      * Test of nextInspection method, of class Controller.
      */
     @Test
-    public void testNextInspection() {
+    public void testNextInspection() throws IOException {
         System.out.println("nextInspection");
         int i = 0;
         Controller instance = new Controller();
@@ -76,10 +77,10 @@ public class ControllerTest {
      * Test of storeResult method, of class Controller.
      */
     @Test
-    public void testStoreResult() {
+    public void testStoreResult() throws IOException {
         System.out.println("storeResult");
         int i = 0;
-        String result_2 = "";
+        boolean result_2 = true;
         Controller instance = new Controller();
         instance.storeResult(i, result_2);
         // TODO review the generated test code and remove the default call to fail.
@@ -90,7 +91,7 @@ public class ControllerTest {
      * Test of payment method, of class Controller.
      */
     @Test
-    public void testPayment() {
+    public void testPayment() throws IOException {
         System.out.println("payment");
         double price = 0.0;
         Controller instance = new Controller();

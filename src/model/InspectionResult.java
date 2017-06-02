@@ -11,10 +11,11 @@ package model;
  */
 public class InspectionResult {
     
-    private String inspecId, inspecResult;
+    private String inspecId;
+    private boolean inspecResult;
     
     //constructor
-    public InspectionResult(String inspecid, String inspecResult){
+    public InspectionResult(String inspecid, boolean inspecResult){
             this.inspecId = inspecid;
             this.inspecResult = inspecResult;
     }
@@ -24,7 +25,7 @@ public class InspectionResult {
         return inspecId;
     }
 
-    public String getInspecResult() {
+    public boolean getInspecResult() {
         return inspecResult;
     }
     
@@ -33,7 +34,7 @@ public class InspectionResult {
         this.inspecId = inspecId;
     }
 
-    public void setInspecResult(String inspecResult) {
+    public void setInspecResult(boolean inspecResult) {
         this.inspecResult = inspecResult;
     }
 

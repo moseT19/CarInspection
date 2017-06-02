@@ -27,7 +27,7 @@ public class Inspection {
         public Inspection(String regnr, double price){
             this.car = new Car(regnr);
             this.checklist = new InspectionChecklist(null, null);
-            this.result = new InspectionResult(null, null);
+            this.result = new InspectionResult(null, false);
             this.price = price;
         }
 

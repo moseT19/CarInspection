@@ -1,7 +1,10 @@
 package View;
 
 
+
+import Utility.LogHandler;
 import controller.Controller;
+import model.NoInspectionsException;
 
 
 /*
@@ -16,25 +19,43 @@ import controller.Controller;
  */
 public class View {
     
-    //constructor for view class
-    public View(Controller contr){
+    /**
+     * The View class for the user interface
+     * @param contr is the controller working with the current user interface
+     * @throws Exception when a inspection can't be found. 
+     */
+    public View(Controller contr) throws Exception{
         
+        contr.addInspectionObserver( new InspectionStatsView());
+        
+        
+    }
+    /**
+     * Sample execute
+     * @param contr is the controller for this sample
+     * @param loghandler is the loghandler for thsi specific sample
+     */
+    public void sampleExec(Controller contr, LogHandler loghandler){
         contr.callNextInspection();
         contr.operateDoor(false);
-        double price = contr.enterRegNumber("abc123");
+        double price = 0;
+        try{
+             price = contr.enterRegNumber("kebab");
+        }catch(Exception e){
+            loghandler.logException(e);
+            System.exit(1);
+        }
         contr.payment(price);
         
         for(int i = 0; i < contr.inspections.size(); i++){
-            System.out.println("\n"+contr.nextInspection(i).toString());
-            //the storeresult method sends the index in the "database" of the inspection perfomed in order to set the result on the correct inspection. 
-            contr.storeResult(contr.dbManager.db.inspectionsInDb.indexOf(contr.inspections.get(i)), "Result input"+contr.dbManager.db.inspectionsInDb.indexOf(contr.inspections.get(i)));
+            System.out.println("\n"+contr.nextInspection(i).toString()); 
+            contr.storeResult(contr.dbManager.db.inspectionsInDb.indexOf(contr.inspections.get(i)), true);
             
         }
         contr.printer.printResult(contr.inspections);
         
         contr.operateDoor(true);
         contr.operateDoor(false);
-        
     }
     
 }

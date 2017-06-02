@@ -5,6 +5,7 @@
  */
 package controller;
 
+import Observer.InspectionObserver;
 import integration.DatabaseManager;
 import integration.Inspection;
 import integration.PaymentAuthorization;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import model.CreditCard;
 
 import integration.Display;
+
+import java.io.IOException;
 import model.GarageDoor;
 import model.InspectionChecklist;
 
@@ -23,6 +26,7 @@ import model.InspectionChecklist;
 //class controller
 public class Controller {
     
+    
     private final Display display;
     private final GarageDoor garageDoor;
     //the global vairable for the database manager is public because its needed outside of this class
@@ -32,14 +36,15 @@ public class Controller {
     private final PaymentAuthorization auth;
     //the arraylist containing the inspections to the specific reg number
     public ArrayList<Inspection> inspections = new ArrayList<>();
-    
+    private ArrayList<InspectionObserver> observers = new ArrayList<>();
     //constructor for the controler to initiate neccesary objects
-    public Controller(){
+    public Controller() throws IOException{
         this.display = new Display(); 
         this.garageDoor = new GarageDoor(); 
         this.dbManager = new DatabaseManager();
         this.auth = new PaymentAuthorization();
         this.printer = new Printer();
+        
     }
     
     //operates door, true = open, false = closed
@@ -47,21 +52,23 @@ public class Controller {
         garageDoor.operateDoor(status);
     }
     
-    //this method initiates next inspection by incrementing displaynumber and opening garage door
+    /**
+     * Calls the next inspection by opening the door and incrementing the display.
+     * Adds the observerlist thorugh the databasemanager object
+     */
     public void callNextInspection(){
         display.incrementNumber();
-        System.out.println("\n**Instructor calls for next inspection. Program updates display and open the garagedoor. ");
+        
         System.out.println(display.toString());
         garageDoor.operateDoor(true);
-        System.out.println("\n**When the customer has entered, the program closes  the garagedoor upon instruction from instructor. ");
         
-        
+        dbManager.addInspectionObservers(observers);
     }
     
     //this method return the calculated cost for perfoming the inspection
-    public double enterRegNumber(String regnr){
+    public double enterRegNumber(String regnr) throws Exception{
         inspections = dbManager.findInspectionsByRegNr(regnr);
-        System.out.println("\n**Instructor enters the car registration number and the program locates inspections to be performed in the database. \n The program then returns the total cost of this inspection. ");
+        
         return Inspection.calculateCost(inspections);
     }
     
@@ -71,9 +78,12 @@ public class Controller {
         return inspections.get(i).getChecklist();
     }
     
-    //calls the method store result in the databasemanager
-    public void storeResult(int i, String result){
-        System.out.print("**Program stores the result in database through the database manager. \n");
+    /**
+     * Calls upon the store result method in databasemanager
+     * @param i the index of this inspection
+     * @param result a boolean for either pass or fail
+     */
+    public void storeResult(int i, boolean result){
         
         dbManager.storeResult(i, result);
     }
@@ -81,8 +91,6 @@ public class Controller {
     
     //initiates the payment procedure and send the payment authorization request and print request
     public void payment(double price){
-        System.out.println("\n**The program tells the customer what price to pay and customer enters creditcard information. ");
-        System.out.println("Amount to pay: "+ price);
         CreditCard customerCreditCard = new CreditCard(1234, "1234 5678 9012 3456", "Johnie doe", "05/21", 007);
         if(auth.authorizePayment(customerCreditCard, price)){
             printer.printReceipt(price);
@@ -90,6 +98,14 @@ public class Controller {
         else{
             //denied payment
         }
+    }
+    
+    /**
+     * Adds a inspectionObserver into the observer list
+     * @param obs the observer to be added
+     */
+    public void addInspectionObserver(InspectionObserver obs){
+        observers.add(obs);
     }
     
 }

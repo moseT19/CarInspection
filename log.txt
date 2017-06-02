@@ -1,0 +1,7 @@
+Exception thrown - Thu Jun 01 13:44:24 CEST 2017
+No inspections can be found for reg number kebab. 
+model.NoInspectionsException: No inspections can be found for reg number kebab. 
+	at integration.DatabaseManager.findInspectionsByRegNr(DatabaseManager.java:64)
+	at controller.Controller.enterRegNumber(Controller.java:70)
+	at View.View.sampleExec(View.java:43)
+	at startup.main.main(main.java:30)
